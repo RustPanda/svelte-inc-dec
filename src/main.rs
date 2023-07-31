@@ -10,7 +10,7 @@ use axum::{
 };
 use futures::stream::{self, Stream};
 use rust_embed::RustEmbed;
-use std::{sync::Arc, time::Duration};
+use std::sync::Arc;
 use tokio::sync::{broadcast, Mutex};
 use tokio_stream::wrappers::BroadcastStream;
 use tokio_stream::StreamExt as _;
@@ -74,11 +74,8 @@ async fn sse_handler(
         Event::default().json_data(*count)
     });
 
-    Sse::new(first.chain(stream)).keep_alive(
-        axum::response::sse::KeepAlive::new()
-            .interval(Duration::from_secs(1))
-            .text("keep-alive-text"),
-    )
+    Sse::new(first.chain(stream))
+        .keep_alive(axum::response::sse::KeepAlive::new().text("keep-alive-text"))
 }
 
 async fn static_handler(uri: Uri) -> impl IntoResponse {
