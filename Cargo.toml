@@ -1,0 +1,18 @@
+[package]
+name = "svelte-inc-dec"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = { git = "https://github.com/tokio-rs/axum.git", features = ["json"] }
+headers = "0.3.8"
+tokio = { version = "1.29.1", features = ["rt-multi-thread", "macros", "signal", "sync"] }
+tokio-stream = { version = "0.1.14", features = ["sync"] }
+futures = "0.3"
+rust-embed = { version = "6.8.1", features = ["compression"] }
+mime_guess = "2.0.4"
+
+[build-dependencies]
+npm_rs = "1.0.0"
